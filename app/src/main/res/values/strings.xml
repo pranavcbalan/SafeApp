@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">SafeApp</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_users">UsersActivity</string>
+    <string name="title_activity_add_user">AddUserActivity</string>
+    <string name="title_activity_view_users">ViewUsersActivity</string>
+    <string name="title_activity_edit_users">EditUsersActivity</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+    <string name="title_activity_setting">SettingActivity</string>
+    <string name="title_activity_profile">ProfileActivity</string>
+    <!--<string name="facebook_app_id">471684606282619</string>-->
+
+</resources>
