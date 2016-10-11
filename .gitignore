@@ -7,4 +7,5 @@
 /captures
 .idea/sonarlint/
 app/libs/
-gastLibrary/build
+
+/gastLibrary/build
