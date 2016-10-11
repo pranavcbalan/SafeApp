@@ -10,6 +10,7 @@ android {
         targetSdkVersion 22
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -18,20 +19,21 @@ android {
         }
     }
 
-}
-
-dependencies {
-//    repositories { mavenCentral() }
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:22.0.0'
-    compile project(':gastLibrary')
-//    compile 'com.facebook.android:facebook-android-sdk:4.0.0'
-//    compile 'com.klinkerapps:android-smsmms:+'
-}
-
-android {
     packagingOptions {
         exclude 'META-INF/LICENSE.txt'
         exclude 'META-INF/NOTICE.txt'
     }
+}
+repositories {
+    mavenCentral()
+}
+dependencies {
+//    repositories { mavenCentral() }
+//    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.android.support:appcompat-v7:22.0.0'
+    compile project(':gastLibrary')
+//    compile 'com.facebook.android:facebook-android-sdk:4.0.0'
+//    compile 'com.klinkerapps:android-smsmms:+'
+    compile 'com.facebook.android:facebook-android-sdk:4.1.0'
+//    compile 'com.sromku:simple-fb:4.0.6'
 }

@@ -77,7 +77,8 @@
                 android:layout_marginTop="16dp"
                 android:text="submit"
                 android:textColor="#000"
-                android:onClick="saveUser" />
+                android:onClick="saveUser"
+                />
 
         </LinearLayout>
 

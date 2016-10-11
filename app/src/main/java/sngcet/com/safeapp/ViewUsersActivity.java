@@ -20,6 +20,9 @@ public class ViewUsersActivity extends ActionBarActivity {
         sqlHelper = new SqlHelper(this);
 
         Cursor cursor = sqlHelper.getAll();
+
+
+
         String[] name = {SqlHelper.CONTACTS_COLUMN_NAME,SqlHelper.CONTACTS_COLUMN_PHONE};
         int[] id = {R.id.textView2,R.id.textView3};
 

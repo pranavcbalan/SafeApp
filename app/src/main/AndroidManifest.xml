@@ -47,10 +47,18 @@
             </intent-filter>
         </activity>
 
+        <!--   facebook app id -->
+        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
+        <!-- To use Facebook Login or Share, also add the FacebookActivity to the manifest: -->
+        <activity android:name="com.facebook.FacebookActivity"
+            android:configChanges=
+                "keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:label="@string/app_name" />
         <!--<meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>-->
-        <!--<provider android:authorities="com.facebook.app.FacebookContentProvider471684606282619"-->
-            <!--android:name="com.facebook.FacebookContentProvider"-->
-            <!--android:exported="true" />-->
+        <provider android:authorities="com.facebook.app.FacebookContentProvider471684606282619"
+            android:name="com.facebook.FacebookContentProvider"
+            android:exported="true" />
 
         <service
             android:name=".BackgroundService"
