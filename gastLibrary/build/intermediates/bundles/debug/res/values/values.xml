@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- From: file:/home/pranav/AndroidStudioProjects/SafeApp/gastLibrary/src/main/res/values/speech_activation.xml -->
-    <eat-comment/>
     <array name="speech_activation_types">
         <item>@string/speech_activation_button</item>
         <item>@string/speech_activation_movement</item>
         <item>@string/speech_activation_clap</item>
         <item>@string/speech_activation_speak</item>
     </array>
-    <!-- From: file:/home/pranav/AndroidStudioProjects/SafeApp/gastLibrary/src/main/res/values/voiceaction_strings.xml -->
-    <eat-comment/>
     <array name="voiceaction_neutralwords">
         <item>cancel</item>
         <item>done</item>
@@ -21,15 +17,9 @@
         <item>yes</item>
         <item>ok</item>
     </array>
-    <!-- From: file:/home/pranav/AndroidStudioProjects/SafeApp/gastLibrary/src/main/res/values/strings.xml -->
-    <eat-comment/>
     <string name="app_name">GastLibrary</string>
-    <!-- From: file:/home/pranav/AndroidStudioProjects/SafeApp/gastLibrary/src/main/res/values/nfc_base_strings.xml -->
-    <eat-comment/>
     <string name="ready_to_write">Ready to write to NFC tag!</string>
     <string name="ready_to_write_instructions">Touch your device to a computer\'s tag to update its inventory.</string>
-    <!-- From: file:/home/pranav/AndroidStudioProjects/SafeApp/gastLibrary/src/main/res/values/speech_activation.xml -->
-    <eat-comment/>
     <string name="speech_activation_button">Button</string>
     <string name="speech_activation_camera">Camera</string>
     <string name="speech_activation_clap">Clap</string>
@@ -39,11 +29,7 @@
     <string name="speech_activation_notification_listening">Listening for </string>
     <string name="speech_activation_notification_title">Speech Activation</string>
     <string name="speech_activation_speak">Speak Hello</string>
-    <!-- From: file:/home/pranav/AndroidStudioProjects/SafeApp/gastLibrary/src/main/res/values/nfc_base_strings.xml -->
-    <eat-comment/>
     <string name="turn_on_nfc">NFC can\'t be used without NFC enabled. Please turn on NFC in the Settings and then use the back button to return to this app.</string>
-    <!-- From: file:/home/pranav/AndroidStudioProjects/SafeApp/gastLibrary/src/main/res/values/voiceaction_strings.xml -->
-    <eat-comment/>
     <string name="voiceaction_cancelled_response">Cancelled.</string>
     <string name="voiceaction_dontunderstand">I did not understand, please try again.</string>
     <string name="voiceaction_heard_nothing">I did not understand because I heard nothing.</string>
@@ -51,7 +37,5 @@
     <string name="voiceaction_not_command">%1$s is not a command</string>
     <string name="voiceaction_retry">, please try again.</string>
     <string name="voiceaction_unknown">I did not understand.</string>
-    <!-- From: file:/home/pranav/AndroidStudioProjects/SafeApp/gastLibrary/src/main/res/values/nfc_base_strings.xml -->
-    <eat-comment/>
     <string name="warning_nfc_is_off">NFC is currently turned off!</string>
 </resources>
