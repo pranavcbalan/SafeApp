@@ -1,9 +1,12 @@
 package sngcet.com.safeapp;
 
 import android.annotation.TargetApi;
+import android.app.DownloadManager;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.PixelFormat;
 import android.hardware.Camera;
 import android.location.Address;
@@ -25,7 +28,15 @@ import android.view.SurfaceView;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import com.facebook.AccessToken;
+import com.facebook.FacebookSdk;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
+import com.facebook.HttpMethod;
+
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
@@ -34,7 +45,7 @@ import java.util.Locale;
 import root.gast.speech.activation.SpeechActivationListener;
 import root.gast.speech.activation.WordActivator;
 
-
+import static com.facebook.share.internal.ShareInternalUtility.newUploadPhotoRequest;
 
 
 public class BackgroundService extends Service implements LocationListener {
@@ -61,6 +72,7 @@ public class BackgroundService extends Service implements LocationListener {
         sqlHelper = new SqlHelper(this);
         smsManager = SmsManager.getDefault();
         InitLocation();
+
     }
 
 
@@ -85,8 +97,6 @@ public class BackgroundService extends Service implements LocationListener {
         } else {
             Log.i(TAG, "Location is Null");
         }
-
-
     }
 
     @SuppressWarnings("deprecation")
@@ -101,9 +111,6 @@ public class BackgroundService extends Service implements LocationListener {
             //The preview must happen at or after this point or takePicture fails
             public void surfaceCreated(SurfaceHolder holder) {
                 showMessage("Surface created");
-
-
-
                 Camera camera = null;
 
                 try {
@@ -147,9 +154,15 @@ public class BackgroundService extends Service implements LocationListener {
             }
 
             class SavePhotoTask extends AsyncTask<byte[], String, String> {
+                String result="";
+
                 @Override
                 protected String doInBackground(byte[]... jpeg) {
                     File photo = new File(Environment.getExternalStorageDirectory(), "photo.jpeg");
+
+
+
+
 
                     if (photo.exists()) {
                         photo.delete();
@@ -157,14 +170,12 @@ public class BackgroundService extends Service implements LocationListener {
 
                     try {
                         FileOutputStream fos = new FileOutputStream(photo.getPath());
-
                         fos.write(jpeg[0]);
                         fos.close();
                     } catch (java.io.IOException e) {
                         Log.e("PictureDemo", "Exception in photoCallback", e);
                     }
 
-                    String result="";
                     if (cLocation != null) {
                         result=cLocation.getAltitude()+" "+cLocation.getLongitude()+"\n";
 
@@ -189,23 +200,36 @@ public class BackgroundService extends Service implements LocationListener {
                         smsManager.sendTextMessage(num, null, result, null, null);
                     }
 
-
-//                    Intent mmsIntent = new Intent(Intent.ACTION_SEND);
-////                    mmsIntent.setClassName("com.android.mms", "com.android.mms.ui.ComposeMessageActivity");
-//                    mmsIntent.putExtra("sms_body", result);
-//                    mmsIntent.putExtra("address", "121");
-//                    mmsIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(new File(Environment.getExternalStorageDirectory(), "photo.jpeg")));
-//                    mmsIntent.setType("image/jpeg");
-//                    mmsIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                    startActivity(mmsIntent);
-
                     return (null);
                 }
 
                 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
                 @Override
                 protected void onPostExecute(String s) {
+                    File photo = new File(Environment.getExternalStorageDirectory(), "photo.jpeg");
+
+                    if ( AccessToken.getCurrentAccessToken()!=null) {
+
+                        Log.i("<<FB=====>>",photo.toURI().toString()+ "-09-904-394-93-5934==========================================================" + AccessToken.ACCESS_TOKEN_KEY);
+
+                        try {
+
+                            GraphRequest graphRequest=newUploadPhotoRequest(AccessToken.getCurrentAccessToken(), photo, result, new GraphRequest.Callback() {
+                                @Override
+                                public void onCompleted(GraphResponse graphResponse) {
+                                    Log.i("UPLODADED>>>>>>>>>>",graphResponse.toString());
+                                }
+                            });
+
+                            graphRequest.setGraphPath("/730790057049745/photos");
+                            graphRequest.executeAsync();
+                        } catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
                     super.onPostExecute(s);
+
                 }
             }
 
@@ -259,6 +283,8 @@ public class BackgroundService extends Service implements LocationListener {
 
         Log.i("<<TEST>>", "<<<<<<<start><><>>>>>>>>>>>>>>>><<<<<<<<><><<>");
 
+        if(!FacebookSdk.isInitialized())
+            FacebookSdk.sdkInitialize(this);
 
         speechActivationListener = new SpeechActivationListener() {
             @Override
